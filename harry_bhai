@@ -1,0 +1,135 @@
+package com.company;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class app {
+
+    //Define Colors
+
+    public static final String RESET_COLOR = "\u001B[0m";
+    public static final String RED_COLOR = "\u001B[31m";
+    public static final String GREEN_COLOR = "\u001B[32m";
+    public static final String BLUE_COLOR = "\u001B[34m";
+    public static final String PURPLE_COLOR = "\u001B[36m";
+
+    //Define colors end
+
+
+    public static float ask, subject_1, subject_2, subject_3, subject_4, subject_5, ans;
+    public static String do_again;
+
+    public static void main(String[] args) {
+
+        System.out.println();
+        System.out.println(GREEN_COLOR + "====================Percentage Calculator app====================" + RESET_COLOR);
+        System.out.println();
+
+        askmarks();
+
+    }
+
+    //functions
+
+    public static void askmarks() {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("What are the maximum marks of each paper: ");
+        ask = scanner.nextFloat();
+        System.out.println();
+        firstsubject();
+    }
+
+    public static void firstsubject() {
+
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(PURPLE_COLOR + "Enter marks of first subject: " + RESET_COLOR);
+            subject_1 = scanner.nextFloat();
+            secondsubject();
+        } catch (InputMismatchException e) {
+
+            System.out.println();
+            System.out.println(RED_COLOR + "Invalid Input! Please try again" + RESET_COLOR);
+            firstsubject();
+        }
+    }
+    public static void secondsubject() {
+
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(PURPLE_COLOR + "Enter marks of second subject: " + RESET_COLOR);
+            subject_2 = scanner.nextFloat();
+            thirdsubject();
+        } catch (InputMismatchException e) {
+
+            System.out.println();
+            System.out.println(RED_COLOR + "Invalid Input! Please try again" + RESET_COLOR);
+            secondsubject();
+        }
+    }
+    public static void thirdsubject() {
+
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(PURPLE_COLOR + "Enter marks of third subject: " + RESET_COLOR);
+            subject_3 = scanner.nextFloat();
+            fourthsubject();
+        } catch (InputMismatchException e) {
+
+            System.out.println();
+            System.out.println(RED_COLOR + "Invalid Input! Please try again" + RESET_COLOR);
+            thirdsubject();
+        }
+    }
+    public static void fourthsubject() {
+
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(PURPLE_COLOR + "Enter marks of fourth subject: " + RESET_COLOR);
+            subject_4 = scanner.nextFloat();
+            fifthsubject();
+        } catch (InputMismatchException e) {
+
+            System.out.println();
+            System.out.println(RED_COLOR + "Invalid Input! Please try again" + RESET_COLOR);
+            fourthsubject();
+        }
+    }
+    public static void fifthsubject() {
+
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(PURPLE_COLOR + "Enter marks of fifth subject: " + RESET_COLOR);
+            subject_5 = scanner.nextFloat();
+            calculate();
+        } catch (InputMismatchException e) {
+
+            System.out.println();
+            System.out.println(RED_COLOR + "Invalid Input! Please try again" + RESET_COLOR);
+            firstsubject();
+        }
+    }
+    public static void calculate() {
+        ans = (((subject_1 + subject_2 + subject_3 + subject_4 + subject_5)/(ask * 5)) * 100);
+        System.out.println();
+        System.out.println(BLUE_COLOR + "Percentage of student is: " + ans + "%" + RESET_COLOR);
+        System.out.println();
+        ask_to_exit();
+
+    }
+    public static void ask_to_exit() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Do you want to use this calculator again?(yes/no): ");
+        do_again = scanner.nextLine();
+
+        if (do_again.equals("yes") || do_again.equals("YES")) {
+            System.out.println();
+            askmarks();
+        } if (do_again.equals("no") || do_again.equals("NO")) {
+            System.exit(0);
+        } else {
+            System.out.println(RED_COLOR + "Invalid Input! Please try again" + RESET_COLOR);
+        }
+    }
+}
